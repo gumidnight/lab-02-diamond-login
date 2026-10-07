@@ -1,3 +1,5 @@
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -13,7 +15,6 @@ public class HelloWorld extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         event.getPlayer().sendMessage("Hello World!");
-        // TODO: Give this joining player exactly 1 diamond.
-        // Follow the Paper Javadocs: Player -> getInventory() -> addItem(...) -> ItemStack -> Material.
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.DIAMOND, 1));
     }
 }

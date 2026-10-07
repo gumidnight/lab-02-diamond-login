@@ -8,7 +8,7 @@ import org.mockbukkit.mockbukkit.ServerMock;
 import org.mockbukkit.mockbukkit.entity.PlayerMock;
 import static org.junit.jupiter.api.Assertions.*;
 
-class StarterTest {
+class DiamondJoinTest {
     private ServerMock server;
     private PlayerMock alex;
     private PlayerMock sam;
@@ -29,9 +29,27 @@ class StarterTest {
         }
         return count;
     }
-    @Test void unfinishedStarterStillGreetsButDoesNotGiveDiamond() {
+    @Test void joinGivesExactlyOneDiamondAndKeepsGreeting() {
         join(alex);
+        assertEquals(1, diamonds(alex));
         alex.assertSaid("Hello World!");
-        assertEquals(0, diamonds(alex));
+        assertEquals(0, diamonds(sam));
+    }
+    @Test void reconnectAddsOneMoreDiamond() {
+        join(alex); join(alex);
+        assertEquals(2, diamonds(alex));
+    }
+    @Test void eachJoiningPlayerGetsTheirOwnDiamond() {
+        join(alex); join(sam);
+        assertEquals(1, diamonds(alex));
+        assertEquals(1, diamonds(sam));
+    }
+    @Test void addsToExistingDiamondsWithoutReplacingOtherItems() {
+        alex.getInventory().setItem(0, new ItemStack(Material.DIAMOND, 7));
+        alex.getInventory().setItem(1, new ItemStack(Material.BREAD, 16));
+        join(alex);
+        assertEquals(8, diamonds(alex));
+        assertEquals(Material.BREAD, alex.getInventory().getItem(1).getType());
+        assertEquals(16, alex.getInventory().getItem(1).getAmount());
     }
 }

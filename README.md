@@ -2,7 +2,7 @@
 
 ## Goal
 
-Modify the plugin so that when a player joins the server, they receive **1 diamond**. Keep the existing Hello World greeting. This is a student starter: the diamond action is a TODO, not a completed solution.
+Modify the plugin so that when a player joins the server, they receive **1 diamond**. Keep the existing Hello World greeting. This is the completed instructor reference. Give students the main branch, not this instructor branch.
 
 ## Requirements
 
@@ -18,7 +18,7 @@ code .
 
 Check `java -version` and `javac -version` show 25. Open the entire folder in VS Code.
 
-## Student steps
+## Teaching sequence
 
 1. Build and run the starter once. It should still show `Hello World!` when you join.
 2. Open `src/main/java/HelloWorld.java` and find the join handler and its TODO.
